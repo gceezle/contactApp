@@ -10,4 +10,5 @@ Follow the step below to run the project
 	- npm install
 	- dotnet build
 	- dotnet run
+
 To check code coverage, execute the batch script: coverage.bat in contactApp.Tests
