@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="alert alert-success alert-dismissible" *ngIf="submitted">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Contact Created Successfully
+        </div>
+        <div class="alert alert-success alert-dismissible" *ngIf="updated">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Contact Updated Successfully
+        </div>
+        <div class="alert alert-danger alert-dismissible" *ngIf="errorOccured">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{errorMessage}}
+        </div>
+        <form name="contactForm" id="contactForm" #contactData="ngForm" (ngSubmit)="submitContact(); contactData.reset()">
+
+            <div class="form-group" [class.has-error]="firstNameControl.invalid && firstNameControl.touched">
+                <label for="firstname" class="control-label">Firstname</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter Firstname" required [(ngModel)]="contactObject.first_name" #firstNameControl="ngModel">
+                <span class="help-block" *ngIf="firstNameControl.invalid && firstNameControl.touched">Firstname is Required</span>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Lastname" [(ngModel)]="contactObject.last_name">
+            </div>
+            <div class="form-group" [class.has-error]="phoneControl.invalid && phoneControl.touched">
+                <label for="phone" class="control-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone" required [(ngModel)]="contactObject.phone" #phoneControl="ngModel">
+                <span class="help-block" *ngIf="phoneControl.invalid && phoneControl.touched">Phone is Required</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="contactData.invalid" *ngIf="!isUpdate">Add Contact</button>
+            <button type="submit" class="btn btn-primary" [disabled]="contactData.invalid" *ngIf="isUpdate">Update Contact</button>
+
+        </form>
+    </div>
+</div>

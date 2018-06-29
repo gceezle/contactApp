@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <h1>All Contacts</h1>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <a class="btn btn-primary" [routerLink]="['/add-contact']" style="margin-top: 20px;">Add Contact</a>
+    </div>
+</div>
+<p *ngIf="!contacts?.length > 0"><em>Loading...</em></p>
+
+<table class='table' *ngIf="contacts?.length > 0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of contacts">
+            <td>{{ contact.id }}</td>
+            <td>{{ contact.first_name }}</td>
+            <td>{{ contact.last_name }}</td>
+            <td>{{ contact.phone }}</td>
+            <td>
+                <button class="btn btn-primary" (click)="editContact(contact.id)"> Edit </button>
+                <button class="btn btn-danger" (click)="deleteContact(contact.id, contact.first_name + ' ' + contact.last_name)"> Delete </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
